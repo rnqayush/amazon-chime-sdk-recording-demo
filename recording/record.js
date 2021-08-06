@@ -73,8 +73,8 @@ const year = timestamp.getFullYear();
 const month = timestamp.getMonth() + 1;
 const day = timestamp.getDate();
 const hour = timestamp.getUTCHours();
-const fileName = `${year}/${month}/${day}/${hour}/${fileTimestamp}.mp4`;
-new S3Uploader(BUCKET_NAME, MEETING_URL).uploadStream(transcodeStreamToOutput.stdout);
+const fileName = `${MEETING_URL}/${fileTimestamp}.mp4`;
+new S3Uploader(BUCKET_NAME,fileName).uploadStream(transcodeStreamToOutput.stdout);
 
 // event handler for docker stop, not exit until upload completes
 process.on('SIGTERM', (code, signal) => {
